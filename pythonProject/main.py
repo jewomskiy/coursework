@@ -16,7 +16,7 @@ students = [
 
 N = len(students)
 I = range(N)
-K = range(1, N // 4 + 1)  # Максимум N // 4 групп, минимум 1 группа
+K = range(1, min(5, N // 3 + 1))   # Максимум N // 3 групп, минимум 1 группа
 
 # Расчет общего балла ЕГЭ с учетом весовых коэффициентов
 for student in students:
@@ -28,8 +28,8 @@ model = pulp.LpProblem("Group_Assignment", pulp.LpMaximize)
 
 x = pulp.LpVariable.dicts("x", [(i, k) for i in I for k in K], cat="Binary")
 
-# Целевая функция: Максимизация суммы баллов в первой группе и учет пожеланий студентов
-model += pulp.lpSum(students[i]["total_score"] * x[i, 1] for i in I) - 0.1 * pulp.lpSum((1 - x[i, k]) for i in I for k in K if k in students[i]["wish"])
+# Целевая функция: Максимизация суммы баллов в первой группе и учет пожеланий студентов. Чуть увеличил штраф, чтобы чаще кидал в ту группу, которую хотят.
+model += pulp.lpSum(students[i]["total_score"] * x[i, 1] for i in I) - (0.3 * pulp.lpSum((1 - x[i, k]) for i in I for k in K if k in students[i]["wish"]))
 
 
 # Ограничения
@@ -37,14 +37,22 @@ model += pulp.lpSum(students[i]["total_score"] * x[i, 1] for i in I) - 0.1 * pul
 for i in I:
     model += pulp.lpSum(x[i, k] for k in K) == 1
 
-# Размер группы должен быть в пределах от 4 до N человек (строго минимум 4)
+
+# Размер группы должен быть в пределах от 3 до N человек (строго минимум 3)
 for k in K:
-    model += pulp.lpSum(x[i, k] for i in I) >= 4
+    model += pulp.lpSum(x[i, k] for i in I) >= 3
     model += pulp.lpSum(x[i, k] for i in I) <= N
 
-# Гендерный баланс в каждой группе
+# Гендерный баланс в каждой группе. Теперь стремися к тому, чтобы у нас просто было равное количество женщин во всех группах. Минус в том, что сильная женщина
+# может попасть к тупым мужчинам. Слишком большая разница в баллах.
+total_women = sum(1 for student in students if student["gender"] == 0)
+min_women_per_group = total_women // len(K)
+max_women_per_group = min_women_per_group + 1
+
 for k in K:
-    model += pulp.lpSum(x[i, k] * students[i]["gender"] for i in I) == pulp.lpSum(x[i, k] * (1 - students[i]["gender"]) for i in I)
+    model += pulp.lpSum(x[i, k] * (1 - students[i]["gender"]) for i in I) >= min_women_per_group
+    model += pulp.lpSum(x[i, k] * (1 - students[i]["gender"]) for i in I) <= max_women_per_group
+
 
 model.solve()
 
@@ -60,7 +68,7 @@ for k in active_groups:
             groups[k].append(i)
 
 # Вывод групп
-for k in K:
+for k in active_groups:
     print(f"Group {k}: {groups[k]}")
     for i in groups[k]:
         print(f"\t{i}: {students[i]}")
