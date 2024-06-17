@@ -1,8 +1,9 @@
 import pulp
-# Здесь получилось разбить по уму +\-, но пульп считает гендер баланс наибольшим приорететом.
+# Здесь получилось разбить по уму +\-, здесь гендер баланс уже меньшую роль играет. Просто раскидываем, чтобы женщин было +-
+# одинаковой в каждой группе.
 # Список студентов
 students = [
-    {"name": "Ольга", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 0, "wish": [3]},
+    {"name": "Ольга", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 0, "wish": [1]},
     {"name": "Елена", "math": 95, "russian": 91, "third": 96, "third_subject": "informatics", "gender": 0, "wish": [2]},
     {"name": "Наталья", "math": 90, "russian": 92, "third": 94, "third_subject": "physics", "gender": 0, "wish": [1]},
     {"name": "Алексей", "math": 90, "russian": 85, "third": 95, "third_subject": "informatics", "gender": 1, "wish": [2]},
@@ -16,7 +17,8 @@ students = [
 
 N = len(students)
 I = range(N)
-K = range(1, min(5, N // 3 + 1))   # Максимум N // 3 групп, минимум 1 группа
+MIN_STUDENTS = 5
+K = range(1, min(5, N // MIN_STUDENTS + 1))   # Максимум N // 3 групп, минимум 1 группа
 
 # Расчет общего балла ЕГЭ с учетом весовых коэффициентов
 for student in students:
@@ -40,7 +42,7 @@ for i in I:
 
 # Размер группы должен быть в пределах от 3 до N человек (строго минимум 3)
 for k in K:
-    model += pulp.lpSum(x[i, k] for i in I) >= 3
+    model += pulp.lpSum(x[i, k] for i in I) >= MIN_STUDENTS
     model += pulp.lpSum(x[i, k] for i in I) <= N
 
 # Гендерный баланс в каждой группе. Теперь стремися к тому, чтобы у нас просто было равное количество женщин во всех группах. Минус в том, что сильная женщина
