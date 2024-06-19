@@ -1,24 +1,25 @@
 import pulp
 # Здесь получилось разбить по уму +\-, здесь гендер баланс уже меньшую роль играет. Просто раскидываем, чтобы женщин было +-
-# одинаковой в каждой группе.
+# одинаковой в каждой группе. Самый приятный вариант на данный момент.
 # Список студентов
 students = [
-    {"name": "Ольга", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 0, "wish": [1]},
-    {"name": "Елена", "math": 95, "russian": 91, "third": 96, "third_subject": "informatics", "gender": 0, "wish": [2]},
+    {"name": "Ольга", "math": 90, "russian": 95, "third": 100, "third_subject": "informatics", "gender": 0, "wish": [1]},
+    {"name": "Елена", "math": 95, "russian": 91, "third": 96, "third_subject": "informatics", "gender": 0, "wish": [1]},
     {"name": "Наталья", "math": 90, "russian": 92, "third": 94, "third_subject": "physics", "gender": 0, "wish": [1]},
     {"name": "Алексей", "math": 90, "russian": 85, "third": 95, "third_subject": "informatics", "gender": 1, "wish": [2]},
-    {"name": "Марик", "math": 100, "russian": 100, "third": 100, "third_subject": "physics", "gender": 1, "wish": [1]},
+    {"name": "Марик", "math": 89, "russian": 84, "third": 90, "third_subject": "physics", "gender": 1, "wish": [1]},
     {"name": "Иван", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 1, "wish": [2]},
-    {"name": "Михали", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 1, "wish": [2]},
+    {"name": "Михали", "math": 75, "russian": 79, "third": 83, "third_subject": "informatics", "gender": 1, "wish": [2]},
     {"name": "Петр", "math": 78, "russian": 82, "third": 85, "third_subject": "physics", "gender": 1, "wish": [2]},
-    {"name": "Сергей", "math": 100, "russian": 100, "third": 100, "third_subject": "physics", "gender": 1, "wish": [1]},
+    {"name": "Сергей", "math": 93, "russian": 80, "third": 85, "third_subject": "physics", "gender": 1, "wish": [1]},
     {"name": "Дмитрий", "math": 80, "russian": 85, "third": 88, "third_subject": "informatics", "gender": 1, "wish": [1]}
 ]
 
 N = len(students)
 I = range(N)
-MIN_STUDENTS = 5
-K = range(1, min(5, N // MIN_STUDENTS + 1))   # Максимум N // 3 групп, минимум 1 группа
+MIN_STUDENTS = 6
+K = range(1, min(5, N // MIN_STUDENTS + 1)) # Максимум N // 3 групп, минимум 1 группа
+#Заменить все веса на переменные
 
 # Расчет общего балла ЕГЭ с учетом весовых коэффициентов
 for student in students:
@@ -30,8 +31,10 @@ model = pulp.LpProblem("Group_Assignment", pulp.LpMaximize)
 
 x = pulp.LpVariable.dicts("x", [(i, k) for i in I for k in K], cat="Binary")
 
+#Матрица предпочтений, кто с кем хочет. Пара предпочтений
+
 # Целевая функция: Максимизация суммы баллов в первой группе и учет пожеланий студентов. Чуть увеличил штраф, чтобы чаще кидал в ту группу, которую хотят.
-model += pulp.lpSum(students[i]["total_score"] * x[i, 1] for i in I) - (0.3 * pulp.lpSum((1 - x[i, k]) for i in I for k in K if k in students[i]["wish"]))
+model += pulp.lpSum(students[i]["total_score"] * x[i, 1] for i in I) - (0.25 * pulp.lpSum((1 - x[i, k]) for i in I for k in K if k in students[i]["wish"]))
 
 
 # Ограничения
@@ -74,3 +77,5 @@ for k in active_groups:
     print(f"Group {k}: {groups[k]}")
     for i in groups[k]:
         print(f"\t{i}: {students[i]}")
+
+# GAMS(солвер) - посмотреть, сравнить. И с SciPy сравнить.
