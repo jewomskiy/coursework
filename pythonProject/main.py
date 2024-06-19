@@ -4,32 +4,52 @@ import random
 # одинаковой в каждой группе. Самый приятный вариант на данный момент.
 # Список студентов
 students = [
-    {"name": "Ольга", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 0, "preferences": []},
-    {"name": "Елена", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 0, "preferences": []},
-    {"name": "Наталья", "math": 100, "russian": 77, "third": 80, "third_subject": "physics", "gender": 0, "preferences": []},
-    {"name": "Алексей", "math": 100, "russian": 85, "third": 88, "third_subject": "informatics", "gender": 1, "preferences": []},
-    {"name": "Марик", "math": 100, "russian": 100, "third": 100, "third_subject": "physics", "gender": 1, "preferences": []},
-    {"name": "Иван", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 1, "preferences": []},
-    {"name": "Михали", "math": 65, "russian": 70, "third": 75, "third_subject": "informatics", "gender": 1, "preferences": []},
-    {"name": "Петр", "math": 78, "russian": 82, "third": 80, "third_subject": "physics", "gender": 1, "preferences": []},
-    {"name": "Сергей", "math": 85, "russian": 80, "third": 79, "third_subject": "physics", "gender": 1, "preferences": []},
-    {"name": "Дмитрий", "math": 75, "russian": 85, "third": 80, "third_subject": "informatics", "gender": 1, "preferences": []},
-    {"name": "Алина", "math": 83, "russian": 76, "third": 81, "third_subject": "informatics", "gender": 0, "preferences": []},
-    {"name": "Ирина", "math": 75, "russian": 78, "third": 70, "third_subject": "informatics", "gender": 0, "preferences": []},
-    {"name": "Светлана", "math": 90, "russian": 85, "third": 87, "third_subject": "physics", "gender": 0, "preferences": []},
-    {"name": "Александр", "math": 85, "russian": 89, "third": 92, "third_subject": "informatics", "gender": 1, "preferences": []},
-    {"name": "Виктор", "math": 80, "russian": 77, "third": 85, "third_subject": "physics", "gender": 1, "preferences": []},
-    {"name": "Константин", "math": 78, "russian": 80, "third": 79, "third_subject": "informatics", "gender": 1, "preferences": []},
-    {"name": "Фёдор", "math": 88, "russian": 84, "third": 89, "third_subject": "informatics", "gender": 1, "preferences": []},
-    {"name": "Григорий", "math": 82, "russian": 80, "third": 85, "third_subject": "physics", "gender": 1, "preferences": []},
-    {"name": "Максим", "math": 79, "russian": 77, "third": 80, "third_subject": "informatics", "gender": 1, "preferences": []},
-    {"name": "Антон", "math": 84, "russian": 83, "third": 86, "third_subject": "physics", "gender": 1, "preferences": []}
+    {"name": "Ольга", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 0,
+     "preferences": ["Наталья", "Алина", "Ирина", "Александр"]},
+    {"name": "Елена", "math": 99, "russian": 99, "third": 99, "third_subject": "informatics", "gender": 0,
+     "preferences": ["Ольга", "Наталья", "Ирина", "Светлана"]},
+    {"name": "Наталья", "math": 100, "russian": 100, "third": 100, "third_subject": "physics", "gender": 0,
+     "preferences": ["Ольга", "Алина", "Ирина", "Светлана"]},
+    {"name": "Алексей", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 1,
+     "preferences": ["Елена", "Марик", "Иван", "Дмитрий"]},
+    {"name": "Марик", "math": 100, "russian": 100, "third": 100, "third_subject": "physics", "gender": 1,
+     "preferences": ["Елена", "Алексей", "Иван", "Дмитрий"]},
+    {"name": "Иван", "math": 30, "russian": 30, "third": 30, "third_subject": "informatics", "gender": 1,
+     "preferences": ["Елена", "Алексей", "Марик", "Дмитрий"]},
+    {"name": "Михали", "math": 65, "russian": 70, "third": 75, "third_subject": "informatics", "gender": 1,
+     "preferences": ["Петр", "Сергей", "Александр", "Константин"]},
+    {"name": "Петр", "math": 78, "russian": 82, "third": 80, "third_subject": "physics", "gender": 1,
+     "preferences": ["Михали", "Сергей", "Александр", "Константин"]},
+    {"name": "Сергей", "math": 85, "russian": 80, "third": 79, "third_subject": "physics", "gender": 1,
+     "preferences": ["Михали", "Петр", "Александр", "Константин"]},
+    {"name": "Дмитрий", "math": 75, "russian": 85, "third": 80, "third_subject": "informatics", "gender": 1,
+     "preferences": ["Елена", "Алексей", "Марик", "Иван"]},
+    {"name": "Алина", "math": 83, "russian": 76, "third": 81, "third_subject": "informatics", "gender": 0,
+     "preferences": ["Алексей", "Марик", "Иван", "Дмитрий"]},
+    {"name": "Ирина", "math": 75, "russian": 78, "third": 70, "third_subject": "informatics", "gender": 0,
+     "preferences": ["Ольга", "Наталья", "Алина", "Светлана"]},
+    {"name": "Светлана", "math": 90, "russian": 85, "third": 87, "third_subject": "physics", "gender": 0,
+     "preferences": ["Наталья", "Алина", "Ирина", "Александр"]},
+    {"name": "Александр", "math": 85, "russian": 89, "third": 92, "third_subject": "informatics", "gender": 1,
+     "preferences": ["Михали", "Петр", "Сергей", "Константин"]},
+    {"name": "Виктор", "math": 80, "russian": 77, "third": 85, "third_subject": "physics", "gender": 1,
+     "preferences": ["Фёдор", "Григорий", "Максим", "Антон"]},
+    {"name": "Константин", "math": 78, "russian": 80, "third": 79, "third_subject": "informatics", "gender": 1,
+     "preferences": ["Михали", "Петр", "Сергей", "Александр"]},
+    {"name": "Фёдор", "math": 88, "russian": 84, "third": 89, "third_subject": "informatics", "gender": 1,
+     "preferences": ["Виктор", "Григорий", "Максим", "Антон"]},
+    {"name": "Григорий", "math": 82, "russian": 80, "third": 85, "third_subject": "physics", "gender": 1,
+     "preferences": ["Виктор", "Фёдор", "Максим", "Антон"]},
+    {"name": "Максим", "math": 79, "russian": 77, "third": 80, "third_subject": "informatics", "gender": 1,
+     "preferences": ["Виктор", "Фёдор", "Григорий", "Антон"]},
+    {"name": "Антон", "math": 84, "russian": 83, "third": 86, "third_subject": "physics", "gender": 1,
+     "preferences": ["Виктор", "Фёдор", "Григорий", "Максим"]}
 ]
 
 # Создание случайных пожеланий для каждого студента
-for student in students:
-    preferences = random.sample([other_student["name"] for other_student in students if other_student["name"] != student["name"]], random.randint(3, 4))
-    student["preferences"] = preferences
+# for student in students:
+#     preferences = random.sample([other_student["name"] for other_student in students if other_student["name"] != student["name"]], random.randint(3, 4))
+#     student["preferences"] = preferences
 
 N = len(students)
 I = range(N)
@@ -61,9 +81,21 @@ y = pulp.LpVariable.dicts("y", [(i, j, k) for i in I for j in I for k in K], cat
 
 #Матрица предпочтений, кто с кем хочет. Пара предпочтений
 
-# Целевая функция: Максимизация суммы баллов в первой группе и учет пожеланий студентов. Чуть увеличил штраф, чтобы чаще кидал в ту группу, которую хотят.
-model += pulp.lpSum(students[i]["total_score"] * x[i, k] for i in I for k in K) + 0.05 * pulp.lpSum(preferences[i][j] * y[i, j, k] for i in I for j in I for k in K)
+# Целевая функция: Максимизация суммы баллов в первой группе и учет пожеланий студентов.
+model += pulp.lpSum(students[i]["total_score"] * x[i, k] * k for i in I for k in K) + 0.2 * pulp.lpSum(preferences[i][j] * y[i, j, k] for i in I for j in I for k in K)
 
+# Ограничения
+# Каждый студент должен быть в одной и только одной группе
+for i in I:
+    model += pulp.lpSum(x[i, k] for k in K) == 1
+
+
+# Размер группы должен быть в пределах
+for k in K:
+    model += pulp.lpSum(x[i, k] for i in I) >= MIN_STUDENTS
+    model += pulp.lpSum(x[i, k] for i in I) <= N
+
+#Убеждаемся, что пожелания не ломают нам ничего и нигде студент не появляется дважды.
 for i in I:
     for j in I:
         if i != j:
@@ -71,17 +103,6 @@ for i in I:
                 model += y[i, j, k] <= x[i, k]
                 model += y[i, j, k] <= x[j, k]
                 model += y[i, j, k] >= x[i, k] + x[j, k] - 1
-# Ограничения
-# Каждый студент должен быть в одной и только одной группе
-for i in I:
-    model += pulp.lpSum(x[i, k] for k in K) == 1
-
-
-# Размер группы должен быть в пределах от 3 до N человек (строго минимум 3)
-for k in K:
-    model += pulp.lpSum(x[i, k] for i in I) >= MIN_STUDENTS
-    model += pulp.lpSum(x[i, k] for i in I) <= N
-
 # Гендерный баланс в каждой группе. Теперь стремися к тому, чтобы у нас просто было равное количество женщин во всех группах. Минус в том, что сильная женщина
 # может попасть к тупым мужчинам. Слишком большая разница в баллах.
 total_women = sum(1 for student in students if student["gender"] == 0)
