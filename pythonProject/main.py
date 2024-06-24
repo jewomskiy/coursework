@@ -5,46 +5,93 @@ import random
 # Список студентов
 students = [
     {"name": "Ольга", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 0,
-     "preferences": ["Наталья", "Алина", "Ирина", "Александр"]},
+     "preferences": ["Никита", "София", "Марик", "Дмитрий"]},
     {"name": "Елена", "math": 99, "russian": 99, "third": 99, "third_subject": "informatics", "gender": 0,
-     "preferences": ["Ольга", "Наталья", "Ирина", "Светлана"]},
+     "preferences": ["Ольга", "Иван", "Сергей", "Михали"]},
     {"name": "Наталья", "math": 100, "russian": 100, "third": 100, "third_subject": "physics", "gender": 0,
-     "preferences": ["Ольга", "Алина", "Ирина", "Светлана"]},
+     "preferences": ["Алина", "Ирина", "София", "Ольга"]},
     {"name": "Алексей", "math": 100, "russian": 100, "third": 100, "third_subject": "informatics", "gender": 1,
-     "preferences": ["Елена", "Марик", "Иван", "Дмитрий"]},
+     "preferences": ["Марик", "Иван", "Ольга", "Степан"]},
     {"name": "Марик", "math": 100, "russian": 100, "third": 100, "third_subject": "physics", "gender": 1,
-     "preferences": ["Елена", "Алексей", "Иван", "Дмитрий"]},
-    {"name": "Иван", "math": 30, "russian": 30, "third": 30, "third_subject": "informatics", "gender": 1,
-     "preferences": ["Елена", "Алексей", "Марик", "Дмитрий"]},
+     "preferences": ["Никита", "Иван", "Ольга", "Елена"]},
+    {"name": "Иван", "math": 50, "russian": 30, "third": 30, "third_subject": "informatics", "gender": 1,
+     "preferences": ["Алексей", "София", "Ольга", "Елена"]},
     {"name": "Михали", "math": 65, "russian": 70, "third": 75, "third_subject": "informatics", "gender": 1,
-     "preferences": ["Петр", "Сергей", "Александр", "Константин"]},
+     "preferences": ["Петр", "Александр", "Константин", "Ольга"]},
     {"name": "Петр", "math": 78, "russian": 82, "third": 80, "third_subject": "physics", "gender": 1,
-     "preferences": ["Михали", "Сергей", "Александр", "Константин"]},
+     "preferences": ["Михали", "Александр", "Константин", "Елена"]},
     {"name": "Сергей", "math": 85, "russian": 80, "third": 79, "third_subject": "physics", "gender": 1,
-     "preferences": ["Михали", "Петр", "Александр", "Константин"]},
+     "preferences": ["Михали", "Александр", "Константин", "Иван"]},
     {"name": "Дмитрий", "math": 75, "russian": 85, "third": 80, "third_subject": "informatics", "gender": 1,
      "preferences": ["Елена", "Алексей", "Марик", "Иван"]},
     {"name": "Алина", "math": 83, "russian": 76, "third": 81, "third_subject": "informatics", "gender": 0,
      "preferences": ["Алексей", "Марик", "Иван", "Дмитрий"]},
     {"name": "Ирина", "math": 75, "russian": 78, "third": 70, "third_subject": "informatics", "gender": 0,
-     "preferences": ["Ольга", "Наталья", "Алина", "Светлана"]},
+     "preferences": ["Наталья", "Алина", "Светлана", "Ольга"]},
     {"name": "Светлана", "math": 90, "russian": 85, "third": 87, "third_subject": "physics", "gender": 0,
      "preferences": ["Наталья", "Алина", "Ирина", "Александр"]},
-    {"name": "Александр", "math": 85, "russian": 89, "third": 92, "third_subject": "informatics", "gender": 1,
-     "preferences": ["Михали", "Петр", "Сергей", "Константин"]},
+    {"name": "Александр", "math": 80, "russian": 89, "third": 92, "third_subject": "informatics", "gender": 1,
+     "preferences": ["Михали", "Дарья", "София", "Константин"]},
     {"name": "Виктор", "math": 80, "russian": 77, "third": 85, "third_subject": "physics", "gender": 1,
-     "preferences": ["Фёдор", "Григорий", "Максим", "Антон"]},
+     "preferences": ["Илья", "Григорий", "Максим", "Антон"]},
     {"name": "Константин", "math": 78, "russian": 80, "third": 79, "third_subject": "informatics", "gender": 1,
      "preferences": ["Михали", "Петр", "Сергей", "Александр"]},
     {"name": "Фёдор", "math": 88, "russian": 84, "third": 89, "third_subject": "informatics", "gender": 1,
-     "preferences": ["Виктор", "Григорий", "Максим", "Антон"]},
+     "preferences": ["Виктор", "Степан", "Максим", "Антон"]},
     {"name": "Григорий", "math": 82, "russian": 80, "third": 85, "third_subject": "physics", "gender": 1,
      "preferences": ["Виктор", "Фёдор", "Максим", "Антон"]},
     {"name": "Максим", "math": 79, "russian": 77, "third": 80, "third_subject": "informatics", "gender": 1,
      "preferences": ["Виктор", "Фёдор", "Григорий", "Антон"]},
     {"name": "Антон", "math": 84, "russian": 83, "third": 86, "third_subject": "physics", "gender": 1,
-     "preferences": ["Виктор", "Фёдор", "Григорий", "Максим"]}
+     "preferences": ["Виктор", "Фёдор", "Григорий", "Илья"]},
+    {"name": "Андрей", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "informatics", "gender": 1,
+     "preferences": ["Сергей", "Петр", "Михали", "Александр"]},
+    {"name": "Юлия", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 0,
+     "preferences": ["Ольга", "Елена", "Алина", "Ирина"]},
+    {"name": "Кирилл", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "informatics", "gender": 1,
+     "preferences": ["Никита", "Константин", "Петр", "Михали"]},
+    {"name": "Мария", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 0,
+     "preferences": ["Светлана", "Наталья", "Алина", "Ирина"]},
+    {"name": "Арсений", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "informatics", "gender": 1,
+     "preferences": ["Константин", "Александр", "Петр", "Сергей"]},
+    {"name": "Анастасия", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "informatics", "gender": 0,
+     "preferences": ["Илья", "Алина", "Ирина", "Никита"]},
+    {"name": "Даниил", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 1,
+     "preferences": ["Максим", "Антон", "Дарья", "Григорий"]},
+    {"name": "Лидия", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 0,
+     "preferences": ["Мария", "Юлия", "Светлана", "Наталья"]},
+    {"name": "Владимир", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "informatics", "gender": 1,
+     "preferences": ["Константин", "Сергей", "Александр", "Петр"]},
+    {"name": "София", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "informatics", "gender": 0,
+     "preferences": ["Ольга", "Алина", "Ирина", "Дарья"]},
+    {"name": "Глеб", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 1,
+     "preferences": ["Виктор", "Антон", "Максим", "Фёдор"]},
+    {"name": "Вера", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 100), "third_subject": "physics", "gender": 0,
+     "preferences": ["Лидия", "Юлия", "Мария", "Светлана"]},
+    {"name": "Роман", "math": random.randint(80, 100), "russian": random.randint(80, 100), "third": random.randint(60, 100), "third_subject": "informatics", "gender": 1,
+     "preferences": ["Сергей", "Константин", "Александр", "Михали"]},
+    {"name": "Дарья", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "informatics", "gender": 0,
+     "preferences": ["Алина", "Елена", "Ирина", "Ольга"]},
+    {"name": "Тимофей", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 1,
+     "preferences": ["Григорий", "Антон", "Максим", "Фёдор"]},
+    {"name": "Полина", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 0,
+     "preferences": ["Вера", "Лидия", "Юлия", "Мария"]},
+    {"name": "Егор", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "informatics", "gender": 1,
+     "preferences": ["Петр", "Степан", "Александр", "Константин"]},
+    {"name": "Екатерина", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 0,
+     "preferences": ["Ольга", "Елена", "Ирина", "Алина"]},
+    {"name": "Никита", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "informatics", "gender": 1,
+     "preferences": ["Александр", "Петр", "Сергей", "Константин"]},
+    {"name": "Татьяна", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 0,
+     "preferences": ["Алина", "Ирина", "Светлана", "Наталья"]},
+    {"name": "Илья", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 1,
+     "preferences": ["Григорий", "Фёдор", "Максим", "Антон"]},
+    {"name": "Агата", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "physics", "gender": 0,
+     "preferences": ["Вера", "Лидия", "Юлия", "Мария"]},
+    {"name": "Степан", "math": random.randint(60, 75), "russian": random.randint(60, 75), "third": random.randint(60, 75), "third_subject": "informatics", "gender": 1,
+     "preferences": ["Сергей", "Петр", "Александр", "Константин"]}
 ]
+
 
 # Создание случайных пожеланий для каждого студента
 # for student in students:
@@ -53,7 +100,7 @@ students = [
 
 N = len(students)
 I = range(N)
-MIN_STUDENTS = 6
+MIN_STUDENTS = 12
 K = range(1, min(5, N // MIN_STUDENTS + 1)) # Максимум N // 3 групп, минимум 1 группа
 #Заменить все веса на переменные
 
@@ -82,7 +129,7 @@ y = pulp.LpVariable.dicts("y", [(i, j, k) for i in I for j in I for k in K], cat
 #Матрица предпочтений, кто с кем хочет. Пара предпочтений
 
 # Целевая функция: Максимизация суммы баллов в первой группе и учет пожеланий студентов.
-model += pulp.lpSum(students[i]["total_score"] * x[i, k] * k for i in I for k in K) + 0.2 * pulp.lpSum(preferences[i][j] * y[i, j, k] for i in I for j in I for k in K)
+model += pulp.lpSum(students[i]["total_score"] * x[i, k] * k for i in I for k in K) + 0.15 * pulp.lpSum(preferences[i][j] * y[i, j, k] for i in I for j in I for k in K)
 
 # Ограничения
 # Каждый студент должен быть в одной и только одной группе
